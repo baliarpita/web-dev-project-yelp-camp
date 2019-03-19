@@ -17,8 +17,8 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 });
 
 // Route to add a new comment
-router.post("/", function(req, res){
-    Campground.findById(req.params.id, middleware.isLoggedIn, function(err, foundCampground){
+router.post("/", middleware.isLoggedIn, function(req, res){
+    Campground.findById(req.params.id, function(err, foundCampground){
        if(err){
            console.log(err);
             res.redirect("/campgrounds/" + foundCampground._id);
